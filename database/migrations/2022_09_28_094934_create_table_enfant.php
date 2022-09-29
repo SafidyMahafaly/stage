@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('affectation', function (Blueprint $table) {
+        Schema::create('enfant', function (Blueprint $table) {
             $table->id();
             $table->integer('employer_id');
             $table->integer('departement_id');
             $table->integer('type_id');
-            $table->string('direction');
-            $table->string('dateEntre');
-            $table->string('service');
-            $table->string('fonction');
-            $table->string('actuelle')->nullable();
+            $table->string('nom');
+            $table->string('date');
+            $table->string('lieu');
+            $table->string('sexe');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('affectation');
+        Schema::dropIfExists('enfant');
     }
 };

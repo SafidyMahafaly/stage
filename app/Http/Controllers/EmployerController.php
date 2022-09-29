@@ -47,6 +47,20 @@ class EmployerController extends Controller
         return view('chef.equipe',compact('equipe','type','departement'));
     }
 
+    public function fiche($id){
+        $etat      = DB::select('select * from etat_civil where employer_id = ?',[$id]);
+        $affectat  = DB::select('select * from affectation where employer_id = ? and actuelle = 1',[$id]);
+        $situation = DB::select('select * from situation where employer_id =?',[$id]);
+        $diplome   = DB::select('select * from diplome where employer_id =?',[$id]);
+        $stage     = DB::select('select * from stage where employer_id = ?',[$id]);
+        $grade     = DB::select('select * from grades where employer_id = ?',[$id]);
+        $civile    = DB::select('select * from civile where employer_id = ?',[$id]);
+        $enfant    = DB::select('select * from enfant where employer_id = ?',[$id]);
+        $suc       = DB::select('select * from affectation where employer_id = ? and actuelle = 2',[$id]);
+        // dd($suc);
+        return view('Chef.fiche',compact('etat','situation','diplome','stage','grade','civile','enfant','affectat','suc'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -1,4 +1,7 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-dark border-b border-gray-100 text-light" style="background:rgb(59,59,59) !important" >
+    <style>
+
+    </style>
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -10,25 +13,28 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" class="text-light"  :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
                 @can(['admin'])
-                    <x-nav-link style="margin-left: 20px" :href="route('departement.index')"  :active="request()->routeIs('departement.index','detail') " >
+                    <x-nav-link style="margin-left: 20px" :href="route('departement.index')" class="text-light"  :active="request()->routeIs('departement.index','detail') " >
                         {{ __('Departement') }}
                     </x-nav-link>
-                    <x-nav-link style="margin-left: 20px" :href="route('type.index')" :active="request()->routeIs('type.index') " >
+                    <x-nav-link style="margin-left: 20px" :href="route('type.index')" class="text-light" :active="request()->routeIs('type.index') " >
                         {{ __('Type employer') }}
                     </x-nav-link>
                 @endcan
                 @can(['chef'])
-                    <x-nav-link style="margin-left: 20px" :href="route('equipe')"  :active="request()->routeIs('equipe') " >
+                    <x-nav-link style="margin-left: 20px" :href="route('equipe')"  class="text-light" :active="request()->routeIs('equipe','equipe.fiche') " >
                         {{ __('Vos équipe') }}
+                    </x-nav-link>
+                    <x-nav-link style="margin-left: 20px" :href="route('fiche.chef')"  class="text-light" :active="request()->routeIs('fiche.index','fiche.chef') " >
+                        {{ __('Fiche') }}
                     </x-nav-link>
                 @endcan
                 @can(['employer'])
-                    <x-nav-link style="margin-left: 20px" :href="route('fiche.index')"  :active="request()->routeIs('fiche.index') " >
+                    <x-nav-link style="margin-left: 20px" :href="route('fiche.index')"  class="text-light" :active="request()->routeIs('fiche.index') " >
                         {{ __('Fiche') }}
                     </x-nav-link>
                 @endcan
@@ -39,7 +45,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div class="text-light">{{ Auth::user()->name }}</div>
 
 
                         </button>

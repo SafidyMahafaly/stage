@@ -1,56 +1,99 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{asset('login.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+  This was created based on the Dribble shot by Deepak Yadav that you can find at https://goo.gl/XRALsw
+  I'm @hk95 on GitHub. Feel free to message me anytime.
+-->
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+<section class="user">
+    <div class="user_options-container">
+      <div class="user_options-text">
+        <div class="user_options-unregistered">
+          <h2 class="user_unregistered-title">Bienvenue</h2>
+          <p class="user_unregistered-text">Veillez entre votre email et votre mot de passe pour vous conecter.Pour crée un compte clicque sur :</p>
+          <button class="user_unregistered-signup" id="signup-button">S'inscrire</button>
+        </div>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <div class="user_options-registered">
+          <h2 class="user_registered-title">Vous avez un compte?</h2>
+          <p class="user_registered-text">Si vous avez un compte veillez cliquer sur le boutton login.</p>
+          <button class="user_registered-login" id="login-button">Connexion</button>
+        </div>
+      </div>
+      <form method="POST" action="{{ route('login') }}">
+      @csrf
+      <div class="user_options-forms" id="user_options-forms">
+        <div class="user_forms-login">
+          <h2 class="forms_title">CONNEXION</h2>
+          <form class="forms_form">
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+              <div class="forms_field">
+                <input type="email" name="email" :value="old('email')"  placeholder="Email" class="forms_field-input" required autofocus />
+                {{-- <x-auth-session-status class="mb-4" :status="session('status')" /> --}}
+                {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
+              </div>
+              <div class="forms_field">
+                <input type="password" name="password" placeholder="Password" class="forms_field-input" required />
+              </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <div class="forms_buttons">
+              <button type="button" class="forms_buttons-forgot">Mots de passe oublié?</button>
+              <input type="submit" value="Se Connecter" class="forms_buttons-action">
             </div>
+          </form>
+          </form>
+        </div>
+        <div class="user_forms-signup">
+          <h2 class="forms_title">INSCRIPTION</h2>
+          <form class="forms_form">
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+              <div class="forms_field">
+                <input type="text" placeholder="Full Name" class="forms_field-input" required />
+              </div>
+              <div class="forms_field">
+                <input type="email" placeholder="Email" class="forms_field-input" required />
+              </div>
+              <div class="forms_field">
+                <input type="password" placeholder="Password" class="forms_field-input" required />
+              </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+            <div class="forms_buttons">
+              <input type="submit" value="Sign up" class="forms_buttons-action">
             </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+<script>
+    const signupButton = document.getElementById('signup-button'),
+    loginButton = document.getElementById('login-button'),
+    userForms = document.getElementById('user_options-forms')
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+/**
+ * Add event listener to the "Sign Up" button
+ */
+signupButton.addEventListener('click', () => {
+  userForms.classList.remove('bounceRight')
+  userForms.classList.add('bounceLeft')
+}, false)
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+/**
+ * Add event listener to the "Login" button
+ */
+loginButton.addEventListener('click', () => {
+  userForms.classList.remove('bounceLeft')
+  userForms.classList.add('bounceRight')
+}, false)
+</script>
+</body>
+</html>

@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('affectation', function (Blueprint $table) {
+        Schema::create('civile', function (Blueprint $table) {
             $table->id();
             $table->integer('employer_id');
             $table->integer('departement_id');
             $table->integer('type_id');
-            $table->string('direction');
-            $table->string('dateEntre');
-            $table->string('service');
-            $table->string('fonction');
-            $table->string('actuelle')->nullable();
+            $table->string('civilite');
+            $table->string('enfant')->nullable()->default(0);
+            $table->string('epoux')->nullable();
+            $table->string('pere')->nullable();
+            $table->string('mere')->nullable();
+            $table->string('fonctionaire')->nullable();
+            $table->string('ministere')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('affectation');
+        Schema::dropIfExists('civile');
     }
 };

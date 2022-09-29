@@ -21,6 +21,12 @@ class FicheController extends Controller
         $info = Employer::where('users_id',$id)->first();
         return view('fiche.index',compact('info'));
     }
+    public function chef()
+    {
+        $id   = Auth()->user()->id;
+        $info = Employer::where('users_id',$id)->first();
+        return view('Chef.ficheC',compact('info'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,24 +46,6 @@ class FicheController extends Controller
      */
     public function store(Request $request)
     {
-
-        // $teste = $request->validate([
-        //     'employer_id' => 'required',
-        //     'departement_id' => 'required',
-        //     'type_id' => 'required',
-        //     'Noms' => 'required',
-        //     'Prenoms' => 'required',
-        //     'Matricule' => 'required',
-        //     'DateNaiss' => 'required',
-        //     'Lieu' => 'required',
-        //     'CIN' => 'required',
-        //     'DateCIN' => 'required',
-        //     'Duplicata' => 'required',
-        //     'Pere' => 'required',
-        //     'Mere' => 'required',
-        //     'Adresse' => 'required',
-        //     'Telephone' => 'required',
-        // ]);
 
         $employer_id       = $request->employer_id;
         $departement_id    = $request->departement_id;
@@ -79,7 +67,29 @@ class FicheController extends Controller
         // fiche::create($teste);
         return back();
     }
+    public function storeC(Request $request)
+    {
 
+        $employer_id       = $request->employer_id;
+        $departement_id    = $request->departement_id;
+        $type_id           = $request->type_id;
+        $Noms              = $request->Noms;
+        $Prenoms           = $request->Prenoms;
+        $Matricule         = $request->Matricule;
+        $DateNaiss         = $request->DateNaiss;
+        $Lieu              = $request->Lieu;
+        $CIN               = $request->CIN;
+        $DateCIN           = $request->DateCIN;
+        $Duplicata         = $request->Duplicata;
+        $Pere              = $request->Pere;
+        $Mere              = $request->Mere;
+        $Adresse           = $request->Adresse;
+        $Telephone         = $request->Telephone;
+
+        DB::insert('insert into etat_civil (employer_id,departement_id,type_id,Noms,Prenoms,Matricule,DateNaiss,Lieu,CIN,DateCIN,Duplicata,Pere,Mere,Adresse,Telephone) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [$request->employer_id, $departement_id, $type_id, $Noms,$Prenoms,$Matricule,$DateNaiss,$Lieu,$CIN,$DateCIN,$Duplicata,$Pere,$Mere,$Adresse,$Telephone] );
+        // fiche::create($teste);
+        return back();
+    }
     public function situation(Request $request){
         $employer_id      = $request->employer_id;
         $departement_id   = $request->departement_id;
@@ -104,7 +114,7 @@ class FicheController extends Controller
         $service            = $request->service;
         $fonction           = $request->fonction;
 
-        DB::insert('insert into affectation (employer_id,departement_id,type_id,direction,dateEntre,service,fonction) values (?,?,?,?,?,?,?)',[$employer_id,$departement_id,$type_id,$direction,$dateEntre,$service,$fonction]);
+        DB::insert('insert into affectation (employer_id,departement_id,type_id,direction,dateEntre,service,fonction,actuelle) values (?,?,?,?,?,?,?,?)',[$employer_id,$departement_id,$type_id,$direction,$dateEntre,$service,$fonction,1]);
         return back();
 
     }
@@ -132,7 +142,8 @@ class FicheController extends Controller
                 'service'         => $service[$i],
                 'fonction'        => $fonction[$i],
                 'debut'           => $debut[$i],
-                'fin'             => $fin[$i]
+                'fin'             => $fin[$i],
+                'actuelle'        => '2'
             ];
             DB::table('affectation')->insert($datasave);
             // dd($datasave);
@@ -210,6 +221,53 @@ class FicheController extends Controller
             DB::table('grades')->insert($datasave);
         }
         return back();
+    }
+
+    public function civile(Request $request){
+        $employer_id     = $request->employer_id;
+        $departement_id  = $request->departement_id;
+        $type_id         = $request->type_id;
+        $civile = $request->civile;
+        $enfant = $request->enfant;
+        $epoux = $request->epoux;
+        $pere = $request->pere;
+        $mere = $request->mere;
+        $datasave = [
+            'employer_id'     => $employer_id,
+            'departement_id'  => $departement_id,
+            'type_id'         => $type_id,
+            'civilite'        => $civile,
+            'enfant'          => $enfant,
+            'epoux'           => $epoux,
+            'pere'            => $pere,
+            'mere'            => $mere,
+        ];
+        DB::table('civile')->insert($datasave);
+        return back();
+    }
+    public function enfant(Request $request){
+        $employer_id     = $request->employer_id;
+        $departement_id  = $request->departement_id;
+        $type_id         = $request->type_id;
+        $nom             = $request->nom;
+        $date            = $request->date;
+        $lieu            = $request->lieu;
+        $sexe            = $request->sexe;
+
+        for($i = 0;$i<count($employer_id);$i++){
+            $datasave = [
+                'employer_id'     => $employer_id[$i],
+                'departement_id'  => $departement_id[$i],
+                'type_id'         => $type_id[$i],
+                'nom'             => $nom[$i],
+                'date'            => $date[$i],
+                'lieu'            => $lieu[$i],
+                'sexe'            =>$sexe[$i],
+            ];
+            DB::table('enfant')->insert($datasave);
+        }
+        return back();
+
     }
     /**
      * Display the specified resource.

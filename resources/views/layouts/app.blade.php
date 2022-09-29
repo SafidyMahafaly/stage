@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <style>
+            .btn-secondary{
+                background: rgb(59,59,59) !important;
+            }
+            .box{
+                border: 3px dotted gray;
+                text-align: center;
+                margin-top:-200px;
+            }
+        </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>MICC</title>
         <link rel="stylesheet" href="{{asset('build/cs')}}">
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('bootstrap.min.css')}}">

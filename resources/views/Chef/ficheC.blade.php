@@ -33,7 +33,7 @@
                       </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade  p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <form action="{{route('fiche.store')}}" method="POST">
+                            <form action="{{route('fiche.storeC')}}" method="POST">
                             @csrf
                             <div class="row">
 
@@ -130,7 +130,7 @@
                         </div>
 
                         <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <form action="{{route('fiche.situation')}}" method="POST">
+                            <form action="{{route('fiche.situationC')}}" method="POST">
                             @csrf
                             <input type="hidden" name="employer_id" value="{{$info->id}}">
                             <input type="hidden" name="departement_id" value="{{$info->departement_id}}">
@@ -195,7 +195,7 @@
                             <div class="row p-2">
                                 <div class="col-md-12">
                                     <h1>AFFECTATION ACTUELLE</h1>
-                                    <form action="{{route('fiche.affectation')}}" method="POST">
+                                    <form action="{{route('fiche.affectationC')}}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <input type="hidden" name="employer_id" value="{{$info->id}}">
@@ -232,7 +232,7 @@
                             </div>
                             <div class="row p-2">
                                 <h1>AFFECTATION SUCCESIVE</h1>
-                                <form action="{{route('fiche.affectationmultiple')}}" method="POST">
+                                <form action="{{route('fiche.affectationmultipleC')}}" method="POST">
                                 @csrf
                                 <table class="table table-bordered">
                                     <thead>
@@ -266,7 +266,7 @@
 
                         <div class="tab-pane fade " id="diplome" role="tabpanel" aria-labelledby="contact-tab">
                             <div class="row p-2">
-                                <form action="{{route('fiche.diplome')}}" method="POST">
+                                <form action="{{route('fiche.diplomeC')}}" method="POST">
                                 @csrf
                                 <table class="table table-bordered">
                                     <thead>
@@ -298,7 +298,7 @@
 
                         <div class="tab-pane fade " id="stage" role="tabpanel" aria-labelledby="contact-tab">
                             <div class="row p-2">
-                                <form action="{{route('fiche.stage')}}" method="POST">
+                                <form action="{{route('fiche.stageC')}}" method="POST">
                                 @csrf
                                 <table class="table table-bordered">
                                     <thead>
@@ -334,7 +334,7 @@
 
                         <div class="tab-pane fade" id="dis" role="tabpanel" aria-labelledby="contact-tab">
                             <div class="row p-2">
-                                <form action="{{route('fiche.grade')}}" method="POST">
+                                <form action="{{route('fiche.gradeC')}}" method="POST">
                                 @csrf
                                 <table class="table table-bordered">
                                     <thead>
@@ -365,7 +365,7 @@
                         </div>
 
                         <div class="tab-pane fade show active" id="famille" role="tabpanel" aria-labelledby="contact-tab">
-                            <form action="{{route('fiche.civile')}}" method="POST">
+                            <form action="{{route('fiche.civileC')}}" method="POST">
                             @csrf
                             <div class="row p-2">
                                 <input type="hidden" value="{{$info->id}}" name="employer_id" class="form-control" readonly>
@@ -410,7 +410,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <h1><u> Renseignement concernant enfants </u></h1>
-                                    <form action="{{route('fiche.enfant')}}" method="POST">
+                                    <form action="{{route('fiche.enfantC')}}" method="POST">
                                     @csrf
                                             <table class="table table-bordered">
                                                 <thead>

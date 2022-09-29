@@ -33,7 +33,7 @@
                                     <td class="align-middle">{{$equ->telephone}}</td>
                                     <td class="align-middle">{{$equ->fontion}}</td>
                                     <td class="align-middle">
-                                        <a href="" class="btn btn-secondary">Fiche</a>
+                                        <a href="{{route('equipe.fiche',$equ->id)}}" class="btn btn-secondary">Fiche</a>
                                         <a href="" class="btn btn-info text-light">Edit</a>
                                         <a href="" class="btn btn-danger">Delete</a>
 
