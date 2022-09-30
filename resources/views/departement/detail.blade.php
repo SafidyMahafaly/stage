@@ -39,7 +39,7 @@
                                                     <th>Nom</th>
                                                     <th>Prenom</th>
                                                     <th>Email</th>
-                                                    <th>Télephone</th>
+                                                    {{-- <th>Télephone</th> --}}
                                                     <th>Fonction</th>
                                                     <th class="text-center">Chef de departement</th>
                                                     <th>Action</th>
@@ -52,7 +52,7 @@
                                                     <td class="align-middle">{{$emp->nom}}</td>
                                                     <td class="align-middle">{{$emp->prenom}}</td>
                                                     <td class="align-middle">{{$emp->email}}</td>
-                                                    <td class="align-middle">{{$emp->telephone}}</td>
+                                                    {{-- <td class="align-middle">{{$emp->telephone}}</td> --}}
                                                     <td class="align-middle">{{$emp->fontion}}</td>
                                                     <td class="text-center align-middle">
                                                         @if($emp->statut == 1)
@@ -90,7 +90,7 @@
                                                     <th>Nom</th>
                                                     <th>Prenom</th>
                                                     <th>Email</th>
-                                                    <th>Télephone</th>
+                                                    {{-- <th>Télephone</th> --}}
                                                     <th>Fonction</th>
                                                     <th class="text-center">Chef de departement</th>
                                                     <th>Action</th>
@@ -103,7 +103,7 @@
                                                     <td class="align-middle">{{$emp->nom}}</td>
                                                     <td class="align-middle">{{$emp->prenom}}</td>
                                                     <td class="align-middle">{{$emp->email}}</td>
-                                                    <td class="align-middle">{{$emp->telephone}}</td>
+                                                    {{-- <td class="align-middle">{{$emp->telephone}}</td> --}}
                                                     <td class="align-middle">{{$emp->fontion}}</td>
                                                     <td class="text-center align-middle">
                                                         @if($emp->statut == 1)
