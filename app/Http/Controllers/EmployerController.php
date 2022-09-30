@@ -110,7 +110,7 @@ class EmployerController extends Controller
 
         }catch(Exception $e){
             DB::rollBack();
-            // return back()->withErrors('erreur','erreur');
+            return back()->withErrors('erreur','erreur');
 
             echo('test');
         }

@@ -1,5 +1,5 @@
 <x-app-layout>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-12">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -62,9 +62,9 @@
                                                         @endif
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="" class="btn btn-secondary">Fiche</a>
-                                                        <a href="" class="btn btn-info text-light">Edit</a>
-                                                        <a href="" class="btn btn-danger">Delete</a>
+                                                        <a href="{{route('admin.fiche',$emp->id)}}" class="btn btn-secondary"><i class="fa-solid fa-sheet-plastic"></i></a>
+                                                        <a href="" class="btn btn-info text-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -113,9 +113,9 @@
                                                         @endif
                                                     </td>
                                                     <td class="align-middle">
-                                                        <a href="" class="btn btn-secondary">Fiche</a>
-                                                        <a href="" class="btn btn-info text-light">Edit</a>
-                                                        <a href="" class="btn btn-danger">Delete</a>
+                                                        <a href="{{route('admin.fiche',$emp->id)}}" class="btn btn-secondary"><i class="fa-solid fa-sheet-plastic"></i></a>
+                                                        <a href="" class="btn btn-info text-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
 
                                                     </td>
                                                 </tr>

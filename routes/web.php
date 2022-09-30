@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth','admin']],function(){
     Route::get('/change',[EmployerController::class,'change'])->name('change');
     Route::get('/changeD',[EmployerController::class,'del'])->name('del');
     Route::resource('/type',TypeController::class);
+    Route::get('/AdminFiche/{id}',[EmployerController::class,'fiche'])->name('admin.fiche');
 });
 
 //pour les chef de departement
