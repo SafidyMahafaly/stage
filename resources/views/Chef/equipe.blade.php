@@ -7,7 +7,15 @@
                         <div class="col-md-12">
                             <h1 style="font-size:20px !important" class="float-start">Liste de vos équipe</h1>
                             <a class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Nouveaux membre</a>
+                            @if (\Session::has('error'))
+                                <div class="alert alert-danger mt-5 p-2">
+                                    <ul>
+                                        <li>{!! \Session::get('error') !!}</li>
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
+
                     </div>
                     <div class="row">
                         <table class="table table-hover mt-3">

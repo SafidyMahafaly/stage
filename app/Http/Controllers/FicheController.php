@@ -19,13 +19,31 @@ class FicheController extends Controller
     {
         $id   = Auth()->user()->id;
         $info = Employer::where('users_id',$id)->first();
-        return view('fiche.index',compact('info'));
+        $etat = DB::select('select * from etat_civil where employer_id = ?',[$info->id]);
+        $situation = DB::select('select * from situation where employer_id =?',[$info->id]);
+        $affectat  = DB::select('select * from affectation where employer_id = ? and actuelle = 1',[$info->id]);
+        $suc       = DB::select('select * from affectation where employer_id = ? and actuelle = 2',[$info->id]);
+        $diplome   = DB::select('select * from diplome where employer_id =?',[$info->id]);
+        $stage     = DB::select('select * from stage where employer_id = ?',[$info->id]);
+        $grade     = DB::select('select * from grades where employer_id = ?',[$info->id]);
+        $civile    = DB::select('select * from civile where employer_id = ?',[$info->id]);
+        $enfant    = DB::select('select * from enfant where employer_id = ?',[$info->id]);
+        return view('fiche.index',compact('info','etat','situation','affectat','suc','diplome','stage','grade','civile','enfant'));
     }
     public function chef()
     {
         $id   = Auth()->user()->id;
         $info = Employer::where('users_id',$id)->first();
-        return view('Chef.ficheC',compact('info'));
+        $etat = DB::select('select * from etat_civil where employer_id = ?',[$info->id]);
+        $situation = DB::select('select * from situation where employer_id =?',[$info->id]);
+        $affectat  = DB::select('select * from affectation where employer_id = ? and actuelle = 1',[$info->id]);
+        $suc       = DB::select('select * from affectation where employer_id = ? and actuelle = 2',[$info->id]);
+        $diplome   = DB::select('select * from diplome where employer_id =?',[$info->id]);
+        $stage     = DB::select('select * from stage where employer_id = ?',[$info->id]);
+        $grade     = DB::select('select * from grades where employer_id = ?',[$info->id]);
+        $civile    = DB::select('select * from civile where employer_id = ?',[$info->id]);
+        $enfant    = DB::select('select * from enfant where employer_id = ?',[$info->id]);
+        return view('Chef.ficheC',compact('info','etat','situation','affectat','suc','diplome','stage','grade','civile','enfant'));
     }
 
     /**

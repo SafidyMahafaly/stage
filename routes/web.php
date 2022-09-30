@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth','admin']],function(){
     Route::resource('/departement',DepartementController::class);
     Route::get('/DeleteDepartement/{id}',[DepartementController::class,'destroy'])->name('delete');
     Route::get('/detail_departement/{id}',[DepartementController::class,'detail'])->name('detail');
-    Route::resource('/employer',EmployerController::class);
+    Route::post('/employerC',[EmployerController::class,'store'])->name('employer.gor');
     Route::get('/change',[EmployerController::class,'change'])->name('change');
     Route::get('/changeD',[EmployerController::class,'del'])->name('del');
     Route::resource('/type',TypeController::class);
@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth','chef']],function(){
     Route::post('/enfantC',[FicheController::class,'enfant'])->name('fiche.enfantC');
 });
 
-Route::group(['middleware' => ['auth','employer','chef']],function(){
+Route::group(['middleware' => ['auth','employer']],function(){
     Route::resource('/fiche',FicheController::class);
     Route::post('/situation',[FicheController::class,'situation'])->name('fiche.situation');
     Route::post('/affectation',[FicheController::class,'affectation'])->name('fiche.affectation');

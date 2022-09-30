@@ -57,8 +57,19 @@ class EmployerController extends Controller
         $civile    = DB::select('select * from civile where employer_id = ?',[$id]);
         $enfant    = DB::select('select * from enfant where employer_id = ?',[$id]);
         $suc       = DB::select('select * from affectation where employer_id = ? and actuelle = 2',[$id]);
+
+        $employer = DB::select('select * from employers where id = ?',[$id]);
+        foreach($employer as $emp){
+            $nom    = $emp->nom;
+            $prenom = $emp->prenom;
+        }
+
+        if(count($etat) < 1 && count($affectat) < 1 && count($situation) < 1){
+            return back()->with('error',"la Fiche de ".$nom." ".$prenom."  n'est pas encore disponible");
+        }else{
+            return view('Chef.fiche',compact('etat','situation','diplome','stage','grade','civile','enfant','affectat','suc'));
+        }
         // dd($suc);
-        return view('Chef.fiche',compact('etat','situation','diplome','stage','grade','civile','enfant','affectat','suc'));
     }
 
     /**

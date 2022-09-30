@@ -27,171 +27,241 @@
                         <li class="nav-item" role="presentation">
                           <button class="nav-link active" id="contact-tab" data-bs-toggle="tab" data-bs-target="#famille" type="button" role="tab" aria-controls="famille" aria-selected="false">Situation Familliale</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Autre</button>
-                        </li>
+
                       </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade  p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            @if(count($etat)<1)
                             <form action="{{route('fiche.storeC')}}" method="POST">
-                            @csrf
-                            <div class="row">
+                                @csrf
+                                <div class="row">
 
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Matricule :</label>
-                                        <input type="hidden" name="employer_id" value="{{$info->id}}">
-                                        <input type="hidden" name="departement_id" value="{{$info->departement_id}}">
-                                        <input type="hidden" name="type_id" value="{{$info->Type_id}}">
-                                        <input type="text" value="{{$info->matricule}}" name="Matricule" class="form-control">
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Matricule :</label>
+                                            <input type="hidden" name="employer_id" value="{{$info->id}}">
+                                            <input type="hidden" name="departement_id" value="{{$info->departement_id}}">
+                                            <input type="hidden" name="type_id" value="{{$info->Type_id}}">
+                                            <input type="text" value="{{$info->matricule}}" name="Matricule" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Nom :</label>
+                                            <input type="text" value="{{$info->nom}}" name="Noms" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Prenoms :</label>
+                                            <input type="text" value="{{$info->prenom}}" name="Prenoms" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Nom :</label>
-                                        <input type="text" value="{{$info->nom}}" name="Noms" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">date de naissance :</label>
+                                            <input type="date" name="DateNaiss" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">lieu :</label>
+                                            <input type="text" name="Lieu" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Prenoms :</label>
-                                        <input type="text" value="{{$info->prenom}}" name="Prenoms" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">CIN :</label>
+                                            <input type="text" name="CIN" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">du :</label>
+                                            <input type="date" name="DateCIN" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Duplicata du :</label>
+                                            <input type="date" name="Duplicata" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">date de naissance :</label>
-                                        <input type="date" name="DateNaiss" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Fils de:</label>
+                                            <input type="text" name="Pere" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">et de :</label>
+                                            <input type="text" name="Mere" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">lieu :</label>
-                                        <input type="text" name="Lieu" class="form-control">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Adresse :</label>
+                                            <input type="text" name="Adresse" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Telephone :</label>
+                                            <input type="text" name="Telephone" value="{{$info->telephone}}" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">CIN :</label>
-                                        <input type="text" name="CIN" class="form-control">
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-outline-primary float-end" type="submit"> Sauvegarder </button>
+                                    </form>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">du :</label>
-                                        <input type="date" name="DateCIN" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Duplicata du :</label>
-                                        <input type="date" name="Duplicata" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Fils de:</label>
-                                        <input type="text" name="Pere" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">et de :</label>
-                                        <input type="text" name="Mere" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Adresse :</label>
-                                        <input type="text" name="Adresse" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Telephone :</label>
-                                        <input type="text" name="Telephone" value="{{$info->telephone}}" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
+                            @else
                                 <div class="col-md-12">
-                                    <button class="btn btn-outline-primary float-end" type="submit"> Sauvegarder </button>
-                                </form>
+                                    <table class="table table-bordered">
+                                        @foreach ($etat as $et)
+                                        <tr>
+                                            <th>Nom</th>
+                                            <td>{{$et->Noms}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Prenoms</th>
+                                            <td>{{$et->Prenoms}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Date et lieu de naissance</th>
+                                            <td>{{$et->DateNaiss}} à {{$et->Lieu}}</td>
+                                        </tr><tr>
+                                            <th>CIN</th>
+                                            <td>{{$et->CIN}} du {{$et->DateCIN}}, duplicata : {{$et->Duplicata}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fils de </th>
+                                            <td>{{$et->Pere}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Et de</th>
+                                            <td>{{$et->Mere}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Adresse</th>
+                                            <td>{{$et->Adresse}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Telephone</th>
+                                            <td>{{$et->Telephone}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
                                 </div>
-                            </div>
+                            @endif
+
                         </div>
 
                         <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            @if(count($situation)<1)
                             <form action="{{route('fiche.situationC')}}" method="POST">
-                            @csrf
-                            <input type="hidden" name="employer_id" value="{{$info->id}}">
-                            <input type="hidden" name="departement_id" value="{{$info->departement_id}}">
-                            <input type="hidden" name="type_id" value="{{$info->Type_id}}">
-                            <div class="row">
-                                <div class="input-groupe mt-3">
-                                    <label for="Nom">Date d'entrée dans l'administration  :</label>
-                                    <input type="date" name="DateEntre" value="" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
+                                @csrf
+                                <input type="hidden" name="employer_id" value="{{$info->id}}">
+                                <input type="hidden" name="departement_id" value="{{$info->departement_id}}">
+                                <input type="hidden" name="type_id" value="{{$info->Type_id}}">
+                                <div class="row">
                                     <div class="input-groupe mt-3">
-                                        <label for="Nom">Corps :</label>
-                                        <input type="text" name="Corps" value="" class="form-control" required>
+                                        <label for="Nom">Date d'entrée dans l'administration  :</label>
+                                        <input type="date" name="DateEntre" value="" class="form-control" required>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">depuis le :</label>
-                                        <input type="date" name="DateCorps" value="" class="form-control" required>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Corps :</label>
+                                            <input type="text" name="Corps" value="" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">depuis le :</label>
+                                            <input type="date" name="DateCorps" value="" class="form-control" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">Grade actuel :</label>
-                                        <select name="Grade" id="" required>
-                                            <option value="" selected hidden> Sélectionez votre grade actuel</option>
-                                            <option value="Stagiaire">Stagiaire</option>
-                                            <option value="Autre">Autre</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">Grade actuel :</label>
+                                            <select name="Grade" id="" required>
+                                                <option value="" selected hidden> Sélectionez votre grade actuel</option>
+                                                <option value="Stagiaire">Stagiaire</option>
+                                                <option value="Autre">Autre</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-groupe mt-3">
-                                        <label for="Nom">depuis le :</label>
-                                        <input type="date" name="DateGrade" value="" class="form-control" required>
+                                    <div class="col-md-4">
+                                        <div class="input-groupe mt-3">
+                                            <label for="Nom">depuis le :</label>
+                                            <input type="date" name="DateGrade" value="" class="form-control" required>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </div>
-                            <div class="row p-2">
-                                <label for="Nom">Programme:</label>
-                                    <select name="Programme" id="" class="" required>
-                                        <option value="" selected hidden> Sélectionez votre programme</option>
-                                        <option value="INDUSTRIE">INDUSTRIE</option>
-                                        <option value="COMMERCE">COMMERCE</option>
-                                    </select>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <button class="btn btn-outline-primary float-end" type="submit"> Sauvegarder </button>
-                                </form>
                                 </div>
-                            </div>
+                                <div class="row p-2">
+                                    <label for="Nom">Programme:</label>
+                                        <select name="Programme" id="" class="" required>
+                                            <option value="" selected hidden> Sélectionez votre programme</option>
+                                            <option value="INDUSTRIE">INDUSTRIE</option>
+                                            <option value="COMMERCE">COMMERCE</option>
+                                        </select>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-outline-primary float-end" type="submit"> Sauvegarder </button>
+                                    </form>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-md-12 mt-2 p-2">
+                                    <table class="table table-bordered">
+                                        @foreach ($situation as $st)
+                                        <tr>
+                                            <th>Date d'entre dans l'administration</th>
+                                            <td>{{$st->DateEntre}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Corps</th>
+                                            <td>{{$st->Corps}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Depuis le</th>
+                                            <td>{{$st->DateCorps}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Grade</th>
+                                            <td>{{$st->Grade}} ; depuis le : {{$st->DateGrade}}  </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Programme</th>
+                                            <td>{{$st->Programme}}  </td>
+                                        </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            @endif
+
                         </div>
 
 
                         <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            @if(count($affectat)<1)
                             <div class="row p-2">
                                 <div class="col-md-12">
                                     <h1>AFFECTATION ACTUELLE</h1>
@@ -262,9 +332,58 @@
                                 </form>
                                 </div>
                             </div>
+                            @else
+                                <div class="col-md-12">
+                                    <h1 class="mt-2">Affectation actuelle :</h1>
+                                    <table class="table table-bordered mt-2">
+                                        @foreach ($affectat as $af)
+                                            <tr>
+                                                <th>Direction</th>
+                                                <td>{{$af->direction}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Date d'entré</th>
+                                                <td>{{$af->dateEntre}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Service</th>
+                                                <td>{{$af->service}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Fonction exercée</th>
+                                                <td>{{$af->fonction}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <h1>Affectation successive</h1>
+                                    <table class="table table-bordered mt-2">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Direction</th>
+                                                <th>Service</th>
+                                                <th>Fonction exercée</th>
+                                                <th>Période</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($suc as $su)
+                                                <tr class="text-center">
+                                                    <td>{{$su->direction}}</td>
+                                                    <td>{{$su->service}}</td>
+                                                    <td>{{$su->fonction}}</td>
+                                                    <td>{{$su->debut}} au {{$su->fin}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="tab-pane fade " id="diplome" role="tabpanel" aria-labelledby="contact-tab">
+                            @if(count($diplome)<1)
                             <div class="row p-2">
                                 <form action="{{route('fiche.diplomeC')}}" method="POST">
                                 @csrf
@@ -294,9 +413,32 @@
                                     </form>
                                 </div>
                             </div>
+                            @else
+                                <div class="col-md-12 mt-2">
+                                    <table class="table table-bordered mt-2">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Diplôme - Certificat - Attestation</th>
+                                                <th>Etablissement et lieu d'obtention</th>
+                                                <th>Année d'obtention</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($diplome as $dipl)
+                                                <tr class="text-center">
+                                                    <td>{{$dipl->diplome}}</td>
+                                                    <td>{{$dipl->etab}}</td>
+                                                    <td>{{$dipl->obtenue}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="tab-pane fade " id="stage" role="tabpanel" aria-labelledby="contact-tab">
+                            @if(count($stage) < 1)
                             <div class="row p-2">
                                 <form action="{{route('fiche.stageC')}}" method="POST">
                                 @csrf
@@ -330,9 +472,37 @@
                                     </form>
                                 </div>
                             </div>
+                            @else
+                                <div class="col-md-12 mt-3">
+                                    <h1>STAGES ET FORMATION</h1>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Nature</th>
+                                                <th>Objet et domaines</th>
+                                                <th>Lieu</th>
+                                                <th>Durée</th>
+                                                <th>Année</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($stage as $stg)
+                                                <tr class="text-center">
+                                                    <td>{{$stg->nature}}</td>
+                                                    <td>{{$stg->objet}}</td>
+                                                    <td>{{$stg->lieu}}</td>
+                                                    <td>{{$stg->dure}}</td>
+                                                    <td>{{$stg->anne}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="tab-pane fade" id="dis" role="tabpanel" aria-labelledby="contact-tab">
+                            @if(count($grade)<1)
                             <div class="row p-2">
                                 <form action="{{route('fiche.gradeC')}}" method="POST">
                                 @csrf
@@ -362,9 +532,32 @@
                                     </form>
                                 </div>
                             </div>
+                            @else
+                                <div class="col-md-12">
+                                    <table class="table table-bordered mt-3">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>GRADE</th>
+                                                <th>Obtention</th>
+                                                <th>N°Date décret</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($grade as $grd)
+                                                <tr class="text-center">
+                                                    <td>{{$grd->grade}}</td>
+                                                    <td>{{$grd->obtention}}</td>
+                                                    <td>{{$grd->date}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="tab-pane fade show active" id="famille" role="tabpanel" aria-labelledby="contact-tab">
+                            @if(count($civile)<1)
                             <form action="{{route('fiche.civileC')}}" method="POST">
                             @csrf
                             <div class="row p-2">
@@ -443,6 +636,55 @@
                                 </div>
 
                             </div>
+                            @else
+                                <div class="col-md-12">
+                                    <table class="table table-bordered mt-3">
+                                        @foreach ($civile as $ci)
+                                            <tr>
+                                                <th>Civilité</th>
+                                                <td>{{$ci->civilite}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Nombre d'efant</th>
+                                                <td>{{$ci->enfant}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Epoux(se)</th>
+                                                <td>{{$ci->epoux}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Mere</th>
+                                                <td>{{$ci->mere}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Prere</th>
+                                                <td>{{$ci->pere}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <h1 class="mt-3">Information concernant l'enfant</h1>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Nom et Prenoms</th>
+                                                <th>Date et lieu de naissance</th>
+                                                <th>Sexe</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($enfant as $en)
+                                                <tr class="text-center">
+                                                    <td>{{$en->nom}}</td>
+                                                    <td>{{$en->date}} à {{$en->lieu}}</td>
+                                                    <td>{{$en->sexe}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
 
                     </div>
