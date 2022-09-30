@@ -92,7 +92,7 @@
                                                     <th>Email</th>
                                                     {{-- <th>Télephone</th> --}}
                                                     <th>Fonction</th>
-                                                    <th class="text-center">Chef de departement</th>
+                                                    <th class="text-center">Chef </th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
