@@ -19,10 +19,12 @@ return new class extends Migration
             $table->integer('departement_id');
             $table->integer('type_id');
             $table->string('direction');
-            $table->string('dateEntre');
+            $table->string('dateEntre')->nullable();
             $table->string('service');
             $table->string('fonction');
             $table->string('actuelle')->nullable();
+            $table->string('debut')->nullable();
+            $table->string('fin')->nullable();
             $table->timestamps();
         });
     }
