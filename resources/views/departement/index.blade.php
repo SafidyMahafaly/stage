@@ -32,7 +32,7 @@
                                     <td>{{$d->nom_dep}}</td>
                                     <td>
                                         <a href="{{route('detail',$d->id)}}" class="btn btn-secondary text-light">Detail</a>
-                                        <a href="" class="btn btn-info text-light">Edit</a>
+                                        <a href="" class="btn btn-info text-light" onclick="edit('{{$d->nom_dep}}',{{$d->id}});" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
                                         <a href="{{route('delete',$d->id)}}" class="btn btn-danger text-light">Delete</a>
                                     </td>
                                 </tr>
@@ -63,8 +63,38 @@
                           </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit département</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{route('departement.miova')}}" method="POST">
+                                @csrf
+                                    <div class="input-groupe">
+                                        <input type="text" name="nom_dep" id="te" class="form-control" placeholder="Nom département" >
+                                        <input type="hidden" name="id" id="tid">
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function edit(nom,id){
+            document.getElementById('te').value = nom;
+            document.getElementById('tid').value = id;
+        }
+    </script>
 </x-app-layout>

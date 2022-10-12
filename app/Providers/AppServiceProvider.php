@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         Gate::define('admin',function($users_roles){
             $rqt =  DB::select('select role_id from role_user  where user_id = ?',[Auth::id()]);
             // dd($rqt);

@@ -39,7 +39,6 @@
                                                     <th>Nom</th>
                                                     <th>Prenom</th>
                                                     <th>Email</th>
-                                                    {{-- <th>Télephone</th> --}}
                                                     <th>Fonction</th>
                                                     <th class="text-center">Chef de departement</th>
                                                     <th>Action</th>
@@ -63,8 +62,8 @@
                                                     </td>
                                                     <td class="align-middle">
                                                         <a href="{{route('admin.fiche',$emp->id)}}" class="btn btn-secondary"><i class="fa-solid fa-sheet-plastic"></i></a>
-                                                        <a href="" class="btn btn-info text-light"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                                        <a href="#" class="btn btn-info text-light" onclick="edit({{$emp->id}},'{{$emp->matricule}}','{{$emp->nom}}','{{$emp->prenom}}','{{$emp->telephone}}','{{$emp->fontion}}')" data-bs-toggle="modal" data-bs-target="#edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="{{route('admin.effacer',$emp->id)}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -80,7 +79,6 @@
                                         <div class="row mt-3">
                                             <div class="col-md-12">
                                                 <h3 style="margin-left: 07px" class="float-start">Liste de(s) chef de département</h3>
-                                                {{-- <a class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Nouveaux chef</a> --}}
                                             </div>
                                         </div>
                                         <table class="table table-hover mt-3">
@@ -127,62 +125,108 @@
                             </div>
                         </div>
                    </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Nouveaux employer du departement : {{$dep->nom_dep}}</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edition employer du département : {{$dep->nom_dep}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{route('employer.edition')}}" method="POST">
+                                @csrf
+                                    <input type="hidden" name="departement_id" value="{{$dep->id}}">
+                                    <input type="hidden" name="service_id" value="1">
+                                    <input type="hidden" name="statut" value="1">
+                                    {{-- <input type="hidden" name="Type_id" value="1"> --}}
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="matricule" class="form-control" placeholder="Matricule" id="mat">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="nom" class="form-control" placeholder="Nom employer" id="nom">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="prenom" class="form-control" placeholder="Prénom employer" id="prenom">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="telephone" class="form-control" placeholder="Télephone" id="tel">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="fontion" class="form-control" placeholder="Fonction" id="fonc">
+                                    </div>   
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+                            </div>
+                            </form>
                         </div>
-                        <div class="modal-body">
-                          <form action="{{route('employer.gor')}}" method="POST">
-                            @csrf
-                                <input type="hidden" name="departement_id" value="{{$dep->id}}">
-                                <input type="hidden" name="service_id" value="1">
-                                <input type="hidden" name="statut" value="1">
-                                {{-- <input type="hidden" name="Type_id" value="1"> --}}
-                                <div class="input-groupe mt-2">
-                                    <input type="text" name="matricule" class="form-control" placeholder="Matricule" id="">
-                                </div>
-                                <div class="input-groupe mt-2">
-                                    <input type="text" name="nom" class="form-control" placeholder="Nom employer" id="">
-                                </div>
-                                <div class="input-groupe mt-2">
-                                    <input type="text" name="prenom" class="form-control" placeholder="Prénom employer" id="">
-                                </div>
-                                <div class="input-groupe mt-2">
-                                    <input type="text" name="email" class="form-control" placeholder="Email" id="">
-                                </div>
-                                <div class="input-groupe mt-2">
-                                    <input type="text" name="telephone" class="form-control" placeholder="Télephone" id="">
-                                </div>
-                                <div class="input-groupe mt-2">
-                                    <input type="text" name="fontion" class="form-control" placeholder="Fonction" id="">
-                                </div>
-                                <div class="input-groupe mt-2">
-                                    <select name="Type_id" class="form-control" id="">
-                                        <option value="" hidden selected>Choisir type d'employer</option>
-                                        @foreach ($type as $t)
-                                            <option value="{{$t->id}}">{{$t->nom}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
                         </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
-                        </div>
-                        </form>
-                      </div>
                     </div>
-                </div>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nouveaux employer du departement : {{$dep->nom_dep}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{route('employer.gor')}}" method="POST">
+                                @csrf
+                                    <input type="hidden" name="departement_id" value="{{$dep->id}}">
+                                    <input type="hidden" name="service_id" value="1">
+                                    <input type="hidden" name="statut" value="1">
+                                    {{-- <input type="hidden" name="Type_id" value="1"> --}}
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="matricule" class="form-control" placeholder="Matricule" id="">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="nom" class="form-control" placeholder="Nom employer" id="">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="prenom" class="form-control" placeholder="Prénom employer" id="">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="email" class="form-control" placeholder="Email" id="">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="telephone" class="form-control" placeholder="Télephone" id="">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="fontion" class="form-control" placeholder="Fonction" id="">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <select name="Type_id" class="form-control" id="">
+                                            <option value="" hidden selected>Choisir type d'employer</option>
+                                            @foreach ($type as $t)
+                                                <option value="{{$t->id}}">{{$t->nom}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+                            </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        function edit(id,matricule,nom,prenom,telephone,fonction){
+            document.getElementById('mat').value = matricule;
+            document.getElementById('nom').value = nom;
+            document.getElementById('prenom').value = prenom;
+            document.getElementById('tel').value = telephone;
+            document.getElementById('fonc').value = fonction;
+        }
+
        $('.ajout').on('change',function(){
             var id = $(this).attr('id');
             var users_id = $(this).attr('test');

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth']],function(){
 //pour l'admin
 Route::group(['middleware' => ['auth','admin']],function(){
     Route::resource('/departement',DepartementController::class);
+    Route::post('/editDepartement',[DepartementController::class,'edition'])->name('departement.miova');
     Route::get('/DeleteDepartement/{id}',[DepartementController::class,'destroy'])->name('delete');
     Route::get('/detail_departement/{id}',[DepartementController::class,'detail'])->name('detail');
     Route::post('/employerC',[EmployerController::class,'store'])->name('employer.gor');
@@ -33,6 +34,8 @@ Route::group(['middleware' => ['auth','admin']],function(){
     Route::get('/changeD',[EmployerController::class,'del'])->name('del');
     Route::resource('/type',TypeController::class);
     Route::get('/AdminFiche/{id}',[EmployerController::class,'fiche'])->name('admin.fiche');
+    Route::post('/editEmployer',[EmployerController::class,'edition'])->name('employer.edition');
+    Route::get('/deleteEmployer/{id}',[EmployerController::class,'destroy'])->name('admin.effacer');
 });
 
 //pour les chef de departement

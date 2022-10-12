@@ -53,22 +53,26 @@
         </div>
         <div class="user_forms-signup">
           <h2 class="forms_title">INSCRIPTION</h2>
-          <form class="forms_form">
+          <form method="POST" action="{{ route('register') }}" style="margin-top:-30px">
+            @csrf
 
               <div class="forms_field">
-                <input type="text" placeholder="Full Name" class="forms_field-input" required />
+                <input type="text" placeholder="Nom" name="name" class="forms_field-input" required />
               </div>
               <div class="forms_field">
-                <input type="email" placeholder="Email" class="forms_field-input" required />
+                <input type="email" placeholder="Email" name="email" class="forms_field-input" required />
               </div>
               <div class="forms_field">
-                <input type="password" placeholder="Password" class="forms_field-input" required />
+                <input type="password" placeholder="Entre votre mot de passe" name="password" class="forms_field-input" required />
+              </div>
+              <div class="forms_field">
+                <input type="password" placeholder="Confirmer votre mot de passe" name="password_confirmation" class="forms_field-input" required />
               </div>
 
             <div class="forms_buttons">
               <input type="submit" value="Sign up" class="forms_buttons-action">
             </div>
-          </form>
+        </form>
         </div>
       </div>
     </div>

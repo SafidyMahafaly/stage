@@ -142,6 +142,10 @@ class EmployerController extends Controller
         return response()->json($id);
     }
 
+    public function edition(Request $request){
+        echo 'test';
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -171,8 +175,14 @@ class EmployerController extends Controller
      * @param  \App\Models\Employer  $employer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employer $employer)
+    public function destroy(Employer $employer,$id)
     {
-        //
+        $user_id = DB::table('employers')
+                ->where('id',$id)
+                ->first();
+        DB::delete('delete from role_user where user_id = ?', [$user_id->users_id]);
+        DB::delete('delete from employers where id = ?', [$id]);
+        DB::delete('delete from users where id = ?', [$id]);
+        return back();
     }
 }

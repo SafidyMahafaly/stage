@@ -68,6 +68,14 @@ class DepartementController extends Controller
      * @param  \App\Models\Departement  $departement
      * @return \Illuminate\Http\Response
      */
+
+    public function edition(Request $request){
+        $nom_dep = $request->nom_dep;
+        $id      = $request->id;
+        DB::update('update departements set nom_dep = ? where id = ?', [$nom_dep,$id]);
+        return back();
+    }
+
     public function show(Departement $departement)
     {
         //
