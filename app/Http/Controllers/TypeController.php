@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeController extends Controller
 {
@@ -62,7 +63,14 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        echo 'test';
+    }
+
+    public function miova(Request $request){
+        $nom = $request->nom_dep;
+        $id = $request->id;
+        DB::update('update types set nom = ? where id = ?', [$nom,$id]);
+        return back();
     }
 
     /**
@@ -83,8 +91,9 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Type $type,$id)
     {
-        //
+        Type::find($id)->delete();
+        return back();
     }
 }

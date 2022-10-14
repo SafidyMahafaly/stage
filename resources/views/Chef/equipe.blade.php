@@ -1,4 +1,6 @@
 <x-app-layout>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-12">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -41,9 +43,9 @@
                                     <td class="align-middle">{{$equ->telephone}}</td>
                                     <td class="align-middle">{{$equ->fontion}}</td>
                                     <td class="align-middle">
-                                        <a href="{{route('equipe.fiche',$equ->id)}}" class="btn btn-secondary">Fiche</a>
-                                        <a href="" class="btn btn-info text-light">Edit</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <a href="{{route('equipe.fiche',$equ->id)}}" class="btn btn-secondary"><i class="fa-solid fa-sheet-plastic"></i></a>
+                                        <a href="#" class="btn btn-info text-light" onclick="edit({{$equ->id}},'{{$equ->matricule}}','{{$equ->nom}}','{{$equ->prenom}}','{{$equ->telephone}}','{{$equ->fontion}}')" data-bs-toggle="modal" data-bs-target="#edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{route('chef.effacer',$equ->id)}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
 
                                     </td>
                                 </tr>
@@ -51,7 +53,45 @@
                             </tbody>
                         </table>
                     </div>
-
+                    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edition employer du département : </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <form action="{{route('chef.editionC')}}" method="POST">
+                                @csrf
+                                    <input type="hidden" name="departement_id" value="">
+                                    <input type="hidden" name="service_id" value="1">
+                                    <input type="hidden" name="statut" value="1">
+                                    <input type="hidden"  name="id" id="idemp">
+                                    {{-- <input type="hidden" name="Type_id" value="1"> --}}
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="matricule" class="form-control" placeholder="Matricule" id="mat">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="nom" class="form-control" placeholder="Nom employer" id="nom">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="prenom" class="form-control" placeholder="Prénom employer" id="prenom">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="telephone" class="form-control" placeholder="Télephone" id="tel">
+                                    </div>
+                                    <div class="input-groupe mt-2">
+                                        <input type="text" name="fontion" class="form-control" placeholder="Fonction" id="fonc">
+                                    </div>   
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+                            </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -109,4 +149,14 @@
             </div>
         </div>
     </div>
+    <script>
+         function edit(id,matricule,nom,prenom,telephone,fonction){
+            document.getElementById('idemp').value = id;
+            document.getElementById('mat').value = matricule;
+            document.getElementById('nom').value = nom;
+            document.getElementById('prenom').value = prenom;
+            document.getElementById('tel').value = telephone;
+            document.getElementById('fonc').value = fonction;
+        }
+    </script>
 </x-app-layout>

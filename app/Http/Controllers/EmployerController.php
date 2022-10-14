@@ -143,7 +143,26 @@ class EmployerController extends Controller
     }
 
     public function edition(Request $request){
-        echo 'test';
+        $matricule = $request->matricule;
+        $nom = $request->nom;
+        $prenom = $request->prenom;
+        $telephone = $request->telephone;
+        $fontion = $request->fontion;
+        $id = $request->id;
+        $req =  DB::update('update employers set matricule = ?,nom = ?,prenom = ?,telephone = ?,fontion = ? where id = ?', [$matricule,$nom,$prenom,$telephone,$fontion,$id]);
+        // dd($id);
+        return back();
+    }
+    public function editionchef(Request $request){
+        $matricule = $request->matricule;
+        $nom = $request->nom;
+        $prenom = $request->prenom;
+        $telephone = $request->telephone;
+        $fontion = $request->fontion;
+        $id = $request->id;
+        $req =  DB::update('update employers set matricule = ?,nom = ?,prenom = ?,telephone = ?,fontion = ? where id = ?', [$matricule,$nom,$prenom,$telephone,$fontion,$id]);
+        // dd($id);
+        return back();
     }
 
     /**
@@ -154,7 +173,7 @@ class EmployerController extends Controller
      */
     public function edit(Employer $employer)
     {
-        //
+       
     }
 
     /**

@@ -23,9 +23,9 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{$ty->nom}}</td>
                                         <th>
-                                            <a href="" class="btn btn-secondary">Détail</a>
-                                            <a href="" class="btn btn-info text-light">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
+                                            <!-- <a href="" class="btn btn-secondary">Détail</a> -->
+                                            <a href="" class="btn btn-info text-light" onclick="edit({{$ty->id}},'{{$ty->nom}}')" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                                            <a href="{{route('deleteT',$ty->id)}}" class="btn btn-danger">Delete</a>
                                         </th>
                                     </tr>
                                     @endforeach
@@ -57,8 +57,38 @@
                           </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit type Employer</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form action="{{route('typ.miova')}}" method="POST">
+                                @csrf
+                                    <div class="input-groupe">
+                                        <input type="text" name="nom_dep" class="form-control" placeholder="Nom département" id="nom_dep">
+                                        <input type="hidden" name="id" class="form-control" placeholder="Nom département" id="id_dep">
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function edit(id,nom){
+            document.getElementById('nom_dep').value = nom;
+            document.getElementById('id_dep').value = id;
+        }
+    </script>
 </x-app-layout>

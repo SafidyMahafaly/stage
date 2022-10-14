@@ -37,7 +37,6 @@ class DepartementController extends Controller
         $chef = DB::select('select * from employers where departement_id = ? and statut = 2', [$id]);
 
         $type = Type::all();
-        // dd($chef);
         $dep = Departement::where('id',$id)->first();
         return view('departement.detail',compact('dep','employer','chef','type'));
     }

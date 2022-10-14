@@ -7,7 +7,7 @@
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Etat civil</button>
+                          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Etat civil</button>
                         </li>
                         <li class="nav-item" role="presentation">
                           <button class="nav-link " id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Situation administrative</button>
@@ -25,12 +25,12 @@
                           <button class="nav-link " id="contact-tab" data-bs-toggle="tab" data-bs-target="#dis" type="button" role="tab" aria-controls="dis" aria-selected="false">Distinct honorifique</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="contact-tab" data-bs-toggle="tab" data-bs-target="#famille" type="button" role="tab" aria-controls="famille" aria-selected="false">Situation Familliale</button>
+                          <button class="nav-link " id="contact-tab" data-bs-toggle="tab" data-bs-target="#famille" type="button" role="tab" aria-controls="famille" aria-selected="false">Situation Familliale</button>
                         </li>
 
                       </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade  p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
                             @if(count($etat)<1)
                             <form action="{{route('fiche.store')}}" method="POST">
                                 @csrf
@@ -556,7 +556,7 @@
                             @endif
                         </div>
 
-                        <div class="tab-pane fade show active" id="famille" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="tab-pane fade " id="famille" role="tabpanel" aria-labelledby="contact-tab">
                             @if(count($civile)<1)
                             <form action="{{route('fiche.civile')}}" method="POST">
                             @csrf

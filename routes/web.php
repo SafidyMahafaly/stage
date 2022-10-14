@@ -28,11 +28,13 @@ Route::group(['middleware' => ['auth','admin']],function(){
     Route::resource('/departement',DepartementController::class);
     Route::post('/editDepartement',[DepartementController::class,'edition'])->name('departement.miova');
     Route::get('/DeleteDepartement/{id}',[DepartementController::class,'destroy'])->name('delete');
+    Route::get('/TypeDel/{id}',[TypeController::class,'destroy'])->name('deleteT');
     Route::get('/detail_departement/{id}',[DepartementController::class,'detail'])->name('detail');
     Route::post('/employerC',[EmployerController::class,'store'])->name('employer.gor');
     Route::get('/change',[EmployerController::class,'change'])->name('change');
     Route::get('/changeD',[EmployerController::class,'del'])->name('del');
     Route::resource('/type',TypeController::class);
+    Route::post('/typeEdit',[TypeController::class,'miova'])->name('typ.miova');
     Route::get('/AdminFiche/{id}',[EmployerController::class,'fiche'])->name('admin.fiche');
     Route::post('/editEmployer',[EmployerController::class,'edition'])->name('employer.edition');
     Route::get('/deleteEmployer/{id}',[EmployerController::class,'destroy'])->name('admin.effacer');
@@ -53,6 +55,8 @@ Route::group(['middleware' => ['auth','chef']],function(){
     Route::post('/gradeC',[FicheController::class,'grade'])->name('fiche.gradeC');
     Route::post('/civileC',[FicheController::class,'civile'])->name('fiche.civileC');
     Route::post('/enfantC',[FicheController::class,'enfant'])->name('fiche.enfantC');
+    Route::post('/editE',[EmployerController::class,'editionchef'])->name('chef.editionC');
+    Route::get('/deleteEquipe/{id}',[EmployerController::class,'destroy'])->name('chef.effacer');
 });
 
 Route::group(['middleware' => ['auth','employer']],function(){

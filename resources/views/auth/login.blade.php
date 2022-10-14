@@ -35,7 +35,7 @@
       font-family: "Montserrat", sans-serif;
       font-weight: 300;
       letter-spacing: .1rem;
-      color: #ccc; }
+      color: black; }
 
   /**
    * Bounce to the left side
@@ -155,7 +155,7 @@
       margin-bottom: 20px; }
     .user_options-forms .forms_field-input {
       width: 100%;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid black;
       padding: 6px 20px 6px 6px;
       font-family: "Montserrat", sans-serif;
       font-size: 1rem;
@@ -173,7 +173,7 @@
       .user_options-forms .forms_buttons-forgot {
         font-family: "Montserrat", sans-serif;
         letter-spacing: .1rem;
-        color: #ccc;
+        color: black;
         text-decoration: underline;
         transition: color .2s ease-in-out; }
         .user_options-forms .forms_buttons-forgot:hover {

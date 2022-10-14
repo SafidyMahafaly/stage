@@ -112,8 +112,8 @@
                                                     </td>
                                                     <td class="align-middle">
                                                         <a href="{{route('admin.fiche',$emp->id)}}" class="btn btn-secondary"><i class="fa-solid fa-sheet-plastic"></i></a>
-                                                        <a href="" class="btn btn-info text-light"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                        <a href="" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                                                        <a href="#" class="btn btn-info text-light" onclick="edit({{$emp->id}},'{{$emp->matricule}}','{{$emp->nom}}','{{$emp->prenom}}','{{$emp->telephone}}','{{$emp->fontion}}')"  data-bs-toggle="modal" data-bs-target="#edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="{{route('admin.effacer',$emp->id)}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
 
                                                     </td>
                                                 </tr>
@@ -138,6 +138,7 @@
                                     <input type="hidden" name="departement_id" value="{{$dep->id}}">
                                     <input type="hidden" name="service_id" value="1">
                                     <input type="hidden" name="statut" value="1">
+                                    <input type="hidden"  name="id" id="idemp">
                                     {{-- <input type="hidden" name="Type_id" value="1"> --}}
                                     <div class="input-groupe mt-2">
                                         <input type="text" name="matricule" class="form-control" placeholder="Matricule" id="mat">
@@ -220,6 +221,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function edit(id,matricule,nom,prenom,telephone,fonction){
+
+            document.getElementById('idemp').value = id;
             document.getElementById('mat').value = matricule;
             document.getElementById('nom').value = nom;
             document.getElementById('prenom').value = prenom;
