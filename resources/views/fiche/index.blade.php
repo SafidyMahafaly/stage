@@ -261,7 +261,39 @@
 
 
                         <div class="tab-pane fade " id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            @if(count($affectat)<1)
+                            @if(count($affectat)<1  )
+                            <div class="row p-2">
+                                <h1>AFFECTATION SUCCESIVE</h1>
+                                <form action="{{route('fiche.affectationmultiple')}}" method="POST">
+                                @csrf
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Direction</th>
+                                            <th>Service</th>
+                                            <th>Fonction exercée</th>
+                                            <th>Periode</th>
+                                            <th><a href="#" class="p-2" onclick="apina();"><i class="fa-solid fa-plus"></i></a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="apina">
+                                        <tr class="text-center">
+                                            <input type="hidden" value="{{$info->id}}" name="employer_id[]" class="form-control" readonly>
+                                            <input type="hidden" value="{{$info->departement_id}}" name="departement_id[]" class="form-control" readonly>
+                                            <input type="hidden" value="{{$info->Type_id}}" name="type_id[]" class="form-control" readonly>
+                                            <th><input type="text" name="direction[]" required></th>
+                                            <th><input type="text" name="service[]" required></th>
+                                            <th><input type="text" name="fonction[]" required></th>
+                                            <th><input type="date" style="width: 150px" name="debut[]" required>&nbsp;au&nbsp;<input type="date" name="fin[]" style="width: 150px" required></th>
+                                            <th class="align-middle"><a href="#"><i class="fa-solid fa-trash p-2 " style="background: rgb(191, 29, 29);color:white"></i></a></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="col-md-12 mt-3">
+                                    <button class="btn btn-outline-primary float-end" type="submit"> Sauvegarder </button>
+                                </form>
+                                </div>
+                            </div>
                             <div class="row p-2">
                                 <div class="col-md-12">
                                     <h1>AFFECTATION ACTUELLE</h1>
@@ -300,38 +332,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row p-2">
-                                <h1>AFFECTATION SUCCESIVE</h1>
-                                <form action="{{route('fiche.affectationmultiple')}}" method="POST">
-                                @csrf
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>Direction</th>
-                                            <th>Service</th>
-                                            <th>Fonction exercée</th>
-                                            <th>Periode</th>
-                                            <th><a href="#" class="p-2" onclick="apina();"><i class="fa-solid fa-plus"></i></a></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="apina">
-                                        <tr class="text-center">
-                                            <input type="hidden" value="{{$info->id}}" name="employer_id[]" class="form-control" readonly>
-                                            <input type="hidden" value="{{$info->departement_id}}" name="departement_id[]" class="form-control" readonly>
-                                            <input type="hidden" value="{{$info->Type_id}}" name="type_id[]" class="form-control" readonly>
-                                            <th><input type="text" name="direction[]" required></th>
-                                            <th><input type="text" name="service[]" required></th>
-                                            <th><input type="text" name="fonction[]" required></th>
-                                            <th><input type="date" style="width: 150px" name="debut[]" required>&nbsp;au&nbsp;<input type="date" name="fin[]" style="width: 150px" required></th>
-                                            <th class="align-middle"><a href="#"><i class="fa-solid fa-trash p-2 " style="background: rgb(191, 29, 29);color:white"></i></a></th>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="col-md-12 mt-3">
-                                    <button class="btn btn-outline-primary float-end" type="submit"> Sauvegarder </button>
-                                </form>
-                                </div>
-                            </div>
+                            
                             @else
                                 <div class="col-md-12">
                                     <h1 class="mt-2">Affectation actuelle :</h1>
